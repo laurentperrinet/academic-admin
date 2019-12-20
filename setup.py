@@ -7,8 +7,8 @@ from setuptools import setup, find_packages
 
 def get_version(package):
     """Return package version as listed in `__version__` in `init.py`."""
-    init_py = open(os.path.join(package, '__init__.py')).read()
-    return re.search("__version__ = ['\"]([^'\"]+)['\"]", init_py).group(1)
+    version_py = open(os.path.join(package, 'version.py')).read()
+    return re.search("version = ['\"]([^'\"]+)['\"]", version_py).group(1)
 
 
 version = get_version('academic')
@@ -45,7 +45,7 @@ setup(
     keywords='cli academic hugo theme static-site-generator cms blog-engine github-pages netlify hugo-theme documentation-generator',
     include_package_data=True,
     license='MIT',
-    packages=find_packages(),
+    packages=find_packages(exclude=['tests']),
     python_requires='>=3.6',
     install_requires=['toml', 'requests', 'bibtexparser'],
     entry_points="""
